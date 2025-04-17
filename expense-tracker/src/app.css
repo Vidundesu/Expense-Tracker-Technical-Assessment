@@ -2,12 +2,54 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
-
+/* app.css */
+:root {
+    --background: 244 246 248;
+    --foreground: 0 0 0;
+  }
+  
+  .dark {
+    --background: 2 6 23;
+    --foreground: 245 245 245;
+    color-scheme: dark;
+  }
+  
+  /* Add base styles */
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+  }
+  
+  /* Manual dark mode classes */
+  .dark .drk\:bg-gray-800 {
+    background-color: #1f2937;
+  }
+  
+  .dark .drk\:text-white {
+    color: #ffffff;
+  }
+  .dark .drk\:bg-slate-900{
+    background-color: #0f172a;
+  }
+  .dark .drk\:bg-gray-700{
+    background-color:#374151 ;
+  }
+  .dark .drk\:bg-gray-800{
+    background-color: #374151;
+  }
+  .dark .drk\:text-gray-300{
+    color: #d1d5db;
+  }
+  .dark .drk\:bg-gray-500{
+    background-color:#6b7280;
+  }
+  .dark .drk\:bg-blue-600{
+    background-color: #2563eb;
+  }
 ::-webkit-scrollbar {
     display: none;
   }
   
-  /* Hide scrollbar for IE, Edge and Firefox */
   html {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */

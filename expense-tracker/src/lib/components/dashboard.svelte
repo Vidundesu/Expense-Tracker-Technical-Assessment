@@ -1,7 +1,8 @@
 <script>
   import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-
+	import Stats from './Stats.svelte';
+  let incomes = [];
 	let expenses = [];
 	let selectedYear = new Date().getFullYear();
 
@@ -10,6 +11,10 @@
 		const storedData = localStorage.getItem('expenses');
 		expenses = storedData ? JSON.parse(storedData) : [];
 	};
+  const loadIncomes = () => {
+    const storedData = localStorage.getItem('incomes');
+    incomes = storedData ? JSON.parse(storedData) : [];
+  };
 
 	// Filter expenses by selected year
 	$: filteredExpenses = expenses.filter((expense) => {
@@ -28,19 +33,21 @@
 	}
 
 	onMount(() => {
-		loadExpenses();
-	});
+    loadExpenses();
+    loadIncomes(); // Add this
+  });
 </script>
 
 <main class="fixed flex h-screen w-[85%] flex-col sm:w-[90%]">
-	<div class="w-full flex-1 overflow-scroll bg-gray-50 p-4 sm:p-8">
-		<h1 class="heading mb-6 font-bold text-gray-600">Welcome User</h1>
+	
+  <div class="w-full flex-1 overflow-scroll p-4 sm:p-8  drk:bg-black">
+
+		<h1 class="heading mb-6 font-bold text-gray-600 drk:text-white">Welcome User</h1>
 		<div class="h-[150svh] sm:h-svh">
 			<div class="grid h-full w-full grid-cols-6 grid-rows-6 gap-2 sm:grid-cols-6 sm:grid-rows-4">
-				<div class="col-span-6 flex gap-2 sm:col-span-3">
-					<div class="w-full rounded-2xl bg-white drop-shadow-md"></div>
-					<div class="w-full rounded-2xl bg-white drop-shadow-md"></div>
-				</div>
+				
+        <Stats {filteredExpenses} incomes={incomes} />
+			
 				<div class="col-span-6 row-span-4 flex flex-col rounded-2xl sm:col-span-3">
 					<div class="h-[10%] w-full justify-between items-center bg-transparent p-2 flex">
             
@@ -72,7 +79,7 @@
 						</select>
 					</div>
 
-					<div class="drk:bg-gray-800 mt-4 h-full overflow-x-auto rounded-2xl bg-white pt-2 lg:p-4">
+					<div class="drk:bg-gray-800 backdrop-blur-2xl mt-4 h-full overflow-x-auto rounded-2xl bg-white pt-2 lg:p-4">
 						<table class="caption w-full border-separate border-spacing-x-0 lg:border-spacing-y-2">
 							<thead class="text-blue-600">
 								<tr>
@@ -91,19 +98,19 @@
 									</tr>
 								{:else }
 									{#each filteredExpenses as expense}
-										<tr class="drk:bg-gray-700 bg-white">
+										<tr class="drk:bg-gray-700 drk:text-gray-300 bg-white">
 											<td
-												class="drk:border-gray-600 rounded-l-md border-r border-gray-300 sm:px-4 sm:py-2 text-center"
+												class="rounded-l-md border-r border-gray-300 sm:px-4 sm:py-2 text-center"
 											>
 												{new Date(expense.date).toISOString().split('T')[0]}
 											</td>
 											<td
-												class="drk:border-gray-600 border-r border-gray-300 sm:px-4 sm:py-2 text-center"
+												class="border-r border-gray-300 sm:px-4 sm:py-2 text-center"
 											>
 												{expense.title}
 											</td>
 											<td
-												class="drk:border-gray-600 border-r border-gray-300 sm:px-4 py-2 text-center"
+												class="border-r border-gray-300 sm:px-4 py-2 text-center"
 											>
 												{expense.category}
 											</td>
@@ -117,9 +124,19 @@
 						</table>
 					</div>
 				</div>
-				<div class="col-span-6 bg-amber-100 sm:col-span-3 sm:row-span-3">
-					<div class="grid h-full w-full grid-cols-2 grid-rows-2">
-						<div id="pie-chart" class=""></div>
+				<div class="col-span-6 bg-white drk:bg-slate-900 rounded-2xl sm:col-span-3 sm:row-span-3">
+					<div class="grid h-full w-full  grid-rows-2">
+						<div id="pie-chart" class="flex flex-row justify-between">
+                <div id="pie-canvas">
+
+                </div>
+                <div id="categories">
+
+                </div>
+            </div>
+            <div id="bar-chart">
+
+            </div>
 					</div>
 				</div>
 				<div id="footer" class="col-span-6"></div>
