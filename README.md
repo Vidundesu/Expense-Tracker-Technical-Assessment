@@ -1,6 +1,6 @@
 # 💰 Welcome to My Expense Tracker App
-
-<sub><i>Technical Assessment: Cloud Parallax Full Stack Internship Position</i></sub>
+| Vidun Pallegoda
+<sub><i>Technical Assessment: Cloud Parallax Full Stack Internship Position  </i></sub>
 
 ---
 
