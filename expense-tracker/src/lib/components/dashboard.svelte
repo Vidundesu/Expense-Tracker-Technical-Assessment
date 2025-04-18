@@ -57,7 +57,7 @@
   <div class="w-full flex-1 overflow-scroll p-4 sm:p-8  drk:bg-black">
 
 		<h1 class="heading mb-6 font-bold text-gray-600 drk:text-white">Welcome User</h1>
-		<div class="h-[150svh] sm:h-svh">
+		<div class="h-[150dvh] sm:h-dvh">
 			<div class="grid h-full w-full grid-cols-6 grid-rows-6 gap-2 sm:grid-cols-6 sm:grid-rows-4">
 				
         <Stats {filteredExpenses} incomes={incomes} />

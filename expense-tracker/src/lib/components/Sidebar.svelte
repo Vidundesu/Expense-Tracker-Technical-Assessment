@@ -13,7 +13,7 @@
 </script>
 
 <nav
-	class="fixed right-0 top-0 flex h-svh w-[15%] items-center bg-white p-4 sm:w-[10%] drk:bg-gray-800"
+	class="fixed right-0 top-0 flex h-dvh w-[15%] items-center bg-white p-4 sm:w-[10%] drk:bg-gray-800"
 >
 	<div class="h-[80%] w-full flex flex-col items-center">
 		<div>

@@ -1,9 +1,5 @@
-
 <script>
-    import { redirect } from '@sveltejs/kit';
-  
-    export const load = () => {
-      throw redirect(307, '/dashboard');
-    };
-  </script>
-  
+	import Dashboard from '$lib/components/dashboard.svelte';
+</script>
+
+<Dashboard />
