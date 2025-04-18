@@ -1,3 +1,14 @@
+<!--
+    Edit expenses
+    =============
+
+    this component is responsible of fetching expenses from localstorage and displaying it in tables giving the 
+    ability to users to edit, delete expenses. also this contains filter methods: category, date, title wise
+
+    outcome
+        users can edit, delete expenses and filter expenses
+-->
+
 <script>
 	import { onMount } from 'svelte';
 

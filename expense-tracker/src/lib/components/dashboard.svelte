@@ -1,7 +1,19 @@
+<!--
+  Dashboard
+  ==========
+    this component is the main entry point of the web app. this component responsible of fetching expenses, income
+    displaying charts, expenses, tables and basically this is the main page of the system. users can get an idea
+    of their income and expenses
+
+    outcome
+      users can see income, expenses, totals, chart analytics
+-->
+
 <script>
   import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import Stats from './Stats.svelte';
+	import Charts from './Charts.svelte';
   let incomes = [];
 	let expenses = [];
 	let selectedYear = new Date().getFullYear();
@@ -21,7 +33,9 @@
 		const expenseYear = new Date(expense.date).getFullYear();
 		return expenseYear === selectedYear;
 	});
-
+  $: yearlyExpenses = filteredExpenses.filter(expense => 
+    new Date(expense.date).getFullYear() === selectedYear
+  );
 	// Get available years from expenses
 	$: years = [...new Set(expenses.map((expense) => new Date(expense.date).getFullYear()))].sort(
 		(a, b) => b - a
@@ -48,7 +62,7 @@
 				
         <Stats {filteredExpenses} incomes={incomes} />
 			
-				<div class="col-span-6 row-span-4 flex flex-col rounded-2xl sm:col-span-3">
+				<div class="col-span-6 row-span-6 flex flex-col rounded-2xl sm:col-span-3">
 					<div class="h-[10%] w-full justify-between items-center bg-transparent p-2 flex">
             
 						<button
@@ -79,10 +93,10 @@
 						</select>
 					</div>
 
-					<div class="drk:bg-gray-800 backdrop-blur-2xl mt-4 h-full overflow-x-auto rounded-2xl bg-white pt-2 lg:p-4">
+					<div class="overflow-hidden drk:bg-gray-800 backdrop-blur-2xl  h-full overflow-x-auto rounded-2xl bg-white pt-2 lg:p-4">
 						<table class="caption w-full border-separate border-spacing-x-0 lg:border-spacing-y-2">
-							<thead class="text-blue-600">
-								<tr>
+							<thead class="text-blue-600 ">
+								<tr class="">
 									<th class="sm:px-4 py-2 text-center">Date</th>
 									<th class="sm:px-4 py-2 text-center">Expense</th>
 									<th class="sm:px-4 py-2 text-center">Category</th>
@@ -124,21 +138,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="col-span-6 bg-white drk:bg-slate-900 rounded-2xl sm:col-span-3 sm:row-span-3">
-					<div class="grid h-full w-full  grid-rows-2">
-						<div id="pie-chart" class="flex flex-row justify-between">
-                <div id="pie-canvas">
-
-                </div>
-                <div id="categories">
-
-                </div>
-            </div>
-            <div id="bar-chart">
-
-            </div>
-					</div>
-				</div>
+        <Charts expenses={yearlyExpenses} {selectedYear} />
 				<div id="footer" class="col-span-6"></div>
 			</div>
 		</div>

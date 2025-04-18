@@ -1,3 +1,12 @@
+<!--
+  add expenses
+  ============
+  this component is responsible of form submission, input validation, save income, expenses
+
+  outcome
+    users can create expenses, income and submit them. all inputs are validated
+-->
+
 <script>
 	import { fade } from 'svelte/transition';
 

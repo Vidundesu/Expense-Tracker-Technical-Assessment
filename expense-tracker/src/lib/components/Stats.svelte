@@ -1,3 +1,12 @@
+
+<!--
+    Stats
+    =======
+    This component responsible of fetching data from localstorage and display line charts in divs
+
+    outcome-
+        can be reused in anypage.
+-->
 <script>
 	import { onMount } from 'svelte';
 	import Chart from 'chart.js/auto';
