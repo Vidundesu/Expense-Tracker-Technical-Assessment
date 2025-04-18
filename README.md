@@ -20,7 +20,7 @@ If you'd prefer to run it locally, follow these steps:
 1. **Clone the repository**
 
    ```bash
-  [ git clone https://github.com/your-username/expense-tracker.git](https://github.com/Vidundesu/Expense-Tracker-Technical-Assessment.git)
+     git clone https://github.com/your-username/expense-tracker.git
    ```
 
 2. **Open the project in VS Code**
